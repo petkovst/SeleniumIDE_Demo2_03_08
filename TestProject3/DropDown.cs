@@ -21,13 +21,21 @@ namespace TestProject3
             options.AddArguments("disable-dev-shm-usage");
             options.AddArguments("disable-gpu");
             options.AddArguments("window-size=1920x1080");
-            options.AddArguments("disable-extension");
+            options.AddArguments("disable-extensions");
             options.AddArguments("remote-debugging-port=9222");
             // Create object of ChromeDriver
             driver = new ChromeDriver(options);
 
             // Add implicit wait
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+        }
+
+        [TearDown]
+
+        public void TearDown()
+        {
+            driver.Quit();
+            driver.Dispose();
         }
 
         [Test]
